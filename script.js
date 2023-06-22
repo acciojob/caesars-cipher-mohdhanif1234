@@ -10,14 +10,23 @@ const lookup = {
   'Y': 'L','Z': 'M', '?': '?', ',': ','
 };
 
-function rot13(encodedStr){
-   let decodedStr = ""; // Your Result goes here
-  // Only change code below this line
-	for(let i in lookup){
-		let c = encodedStr.charAt(i);
-		decodedStr += lookup[c]
-	}
-  return decodedStr;//return decodedArr
+function rot13(str){
+   var decoded = "";
+
+  for (var i = 0; i < str.length; i++) {
+    var charCode = str.charCodeAt(i);
+
+    if (charCode >= 65 && charCode <= 90) {
+      // Check if the character is a letter (A-Z)
+      var decodedCharCode = ((charCode - 65 + 13) % 26) + 65;
+      decoded += String.fromCharCode(decodedCharCode);
+    } else {
+      // Non-alphabetic character, pass it on as is
+      decoded += str.charAt(i);
+    }
+  }
+
+  return decoded;
 }
 
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
